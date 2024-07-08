@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    cin >> m;
+    vector<int> brr(m);
+    for (int i = 0; i < m; i++)
+        cin >> brr[i];
+    sort(arr.begin(), arr.end());
+    sort(brr.begin(), brr.end());
+    vector<int> miss;
+    int i = 0, j = 0;
+    while (i < n && j < m) {
+        if (arr[i] == brr[j]) {
+            i++;
+            j++;
+        } else {
+            miss.push_back(brr[j]);
+            j++;
+        }
+    }
+
+    while (j < m) {
+        miss.push_back(brr[j]);
+        j++;
+    }
+    for (int k = 0; k < miss.size(); k++) {
+        if (miss[k]==miss[k - 1]) {
+            continue;
+        }
+        cout << miss[k] << " ";
+    }
+    cout << endl;
+    return 0;
+}//449
